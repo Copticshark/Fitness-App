@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Define the character set and viewport for responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Title of the webpage that appears in the browser tab -->
     <title>Fitness App</title>
-    
-    <!-- Link to the CSS file to style the webpage -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Main header for the page -->
     <h1>Welcome to the Fitness App</h1>
-    
-    <!-- Placeholder text for the content of the main page -->
-    <p>This is a placeholder for your app's main page!</p>
+    <p>Enter your details below to calculate your predicted calorie intake:</p>
+
+    <!-- Form to capture user input -->
+    <form action="/calculate" method="POST">
+        <label for="weight">Weight (lbs):</label>
+        <input type="number" name="weight" required><br>
+
+        <label for="height">Height (Inches):</label>
+        <input type="number" name="height" required><br>
+
+        <label for="gender">Gender:</label>
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <label for="goal">Goal:</label>
+        <select name="goal">
+            <option value="lose">Lose weight</option>
+            <option value="maintain">Maintain weight</option>
+            <option value="gain">Gain muscle</option>
+        </select><br>
+
+        <button type="submit">Calculate Calories</button>
+    </form>
+
+    <!-- Display the AI results dynamically if available -->
+    {% if predicted_calories %}
+        <h2>Calorie Prediction:</h2>
+        <p>Your predicted daily calorie intake is: {{ predicted_calories }} kcal</p>
+    {% endif %}
+
 </body>
 </html>
