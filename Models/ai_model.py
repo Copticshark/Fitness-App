@@ -20,6 +20,7 @@ def predict_calories(weight, height, gender, goal):
     data = {
         'weight': [50, 60, 70, 80, 90],
         'height': [150, 160, 170, 180, 190],
+        'age':[15, 25, 35, 55, 75],
         'gender': ['male', 'female', 'male', 'female', 'male'],
         'goal': ['lose', 'maintain', 'gain', 'lose', 'maintain'],
         'calories': [2000, 2200, 2500, 2100, 2400]  # Dummy calorie values
@@ -31,7 +32,7 @@ def predict_calories(weight, height, gender, goal):
     goal_numeric = 1 if goal == 'gain' else 0  # Simple encoding for goal
 
     # Define the features and target variable
-    X = df[['weight', 'height', 'gender', 'goal']]  # Features
+    X = df[['weight', 'height', 'age', 'gender', 'goal']]  # Features
     X['gender'] = X['gender'].apply(lambda x: 1 if x == 'male' else 0)
     X['goal'] = X['goal'].apply(lambda x: 1 if x == 'gain' else 0)
     y = df['calories']  # Target variable

@@ -12,11 +12,12 @@ def calculate():
     # Get data from form (e.g., weight, height, goal, etc.)
     weight = float(request.form['weight'])
     height = float(request.form['height'])
+    age = int(request.form['age']) 
     gender = request.form['gender']
     goal = request.form['goal']
 
     # Use your AI model to predict calories or workout plan
-    predicted_calories = predict_calories(weight, height, gender, goal)
+    predicted_calories = predict_calories(weight, height, age, gender, goal)
 
     # Return results to the front-end (render a new template with results)
     return render_template("index.html", predicted_calories=predicted_calories)
